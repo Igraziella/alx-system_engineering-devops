@@ -1,2 +1,2 @@
 #!/bin/bash
-man grep
+printf '%x\n' $DECIMAL
