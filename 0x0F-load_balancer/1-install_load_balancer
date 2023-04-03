@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on your lb-01 server
+sudo apt-get update
+sudo apt-get -y install --no-install-recommends software-properties-common
+sudo apt-get-repository -y ppa:vbernat/haproxy-2.7
+sudo apt-get -y install haproxy
+
+domain_name = 'gnesis.tech'
+init_file = '/etc/default/haproxy'
+config_file = '/etc/haproxy/haproxy.cfg'
+haproxy_lb_config = \
+
+backend $domain_name-backend
+	balance roundrobin
+	server 112254-web-01	100.26.234.0:80 check
+	server 112254-web-02	54.152.54.160:80 check
+frontend $domain_name-frontend
+	bind *:80
+	mode http
+	default_backend $domain_name-backend
