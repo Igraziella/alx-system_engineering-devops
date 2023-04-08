@@ -4,9 +4,9 @@ package { 'nginx':
 }
 
 file { '/etc/nginx/conf.d/custom-http-response-header.conf':
-  ensure => present,
+  ensure  => present,
   content => 'add_header X-Served-By $hostname;',
-  notify => Service['nginx'],
+  notify  => Service['nginx'],
 }
 
 service { 'nginx':
