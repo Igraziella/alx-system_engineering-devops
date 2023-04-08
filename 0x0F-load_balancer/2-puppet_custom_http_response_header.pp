@@ -1,8 +1,15 @@
 # automate the task of creating a custom HTTP header response, using Puppet.
-exec { 'command':
-  command  => 'apt-get -y update;
-  apt-get -y install nginx;
-  sudo sed -i "/listen 80 default_server;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default;
-  service nginx restart',
-  provider => shell,
+package { 'nginx':
+  ensure => installed,
+}
+
+file { '/etc/nginx/conf.d/custom-http-response-header.conf':
+  ensure => present,
+  content => 'add_header X-Served-By $hostname;',
+  notify => Service['nginx'],
+}
+
+service { 'nginx':
+  ensure => running,
+  enable => true,
 }
