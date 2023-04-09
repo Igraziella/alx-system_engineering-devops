@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# A script that stops nginx from running
+cp -r /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+sudo service nginx restart
+pkill -o nginx
