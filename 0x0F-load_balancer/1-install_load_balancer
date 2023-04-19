@@ -11,8 +11,8 @@ init_file = '/etc/default/haproxy'
 echo "
 backend $domain_name-backend
 	balance roundrobin
-	server 112254-web-01	100.26.234.0:80 check
-	server 112254-web-02	54.152.54.160:80 check
+	server 112254-web-01	54.234.95.6:80 check
+	server 112254-web-02	100.25.16.91:80 check
 frontend $domain_name-frontend
 	bind *:80
 	mode http
