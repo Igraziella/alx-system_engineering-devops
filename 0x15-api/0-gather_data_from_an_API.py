@@ -3,19 +3,20 @@
     for a given employee ID, returns information about his/her
     TODO list progress.
 """
-import sys
 import requests
+import sys
 
 
 if __name__ == '__main__':
     """ Get the todo list progress of an employee """
     API = "https://jsonplaceholder.typicode.com"
+
     userId = int(sys.argv[1])
     user_endPoint = "{}/users/{}".format(API, userId)
     user_name = requests.get(user_endPoint).json().get("name")
     todos_endPoint = "{}/todos".format(API)
     todos = requests.get(todos_endPoint).json()
-    todos_user = [dict for todo in todos if todo.get("user.Id")]
+    todos_user = [dict for todo in todos if todo.get("userId")]
 
     # Count the number of completed tasks
     completed_todos = sum(todo['completed'] for todo in todos)
