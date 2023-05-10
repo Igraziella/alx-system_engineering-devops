@@ -9,7 +9,7 @@ def top_ten(subreddit):
     """ Prints the titles of the first 10 hot posts listed
         for a given subreddit.
     """
-    url = f"https://www.reddit.com/r/{subreddit}/top/.json"
+    url = f"https://www.reddit.com/r/{subreddit}/best/.json"
     headers = {'User-Agent': 'alx-system engineering-devops/1.0/0x16-api'}
 
     params = {
@@ -26,6 +26,6 @@ def top_ten(subreddit):
     if "data" in data and "children" in data["data"]:
         # Iterate through the top posts, print and post number and title
         for i, post in enumerate(data["data"]["children"], start=1):
-            print(f"{i}: {post['data']['title']}")
+            print(f"{post['data']['title']}")
     else:
         print("None")
