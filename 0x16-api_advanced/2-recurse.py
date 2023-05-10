@@ -9,11 +9,13 @@ def recurse(subreddit, hot_list=[]):
     """ Returns a list containing the titles of all hot articles
         for a given subreddit.
     """
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = f"https://www.reddit.com/r/{subreddit}/all/hot.json"
     headers = {'User-Agent': 'alx-system_engineering-devops/\
             1.0/0x16-api_advanced'}
 
     response = requests.get(url, headers=headers, allow_redirects=False)
+    data = response.json()
+    posts = data['data']['children']
 
     for post in posts:
         title = post['data']['title']
@@ -26,7 +28,3 @@ def recurse(subreddit, hot_list=[]):
             return hot_list
     else:
         return None
-    for i, title in enumerate(titles, 1):
-        print(f"{i}. {title}")
-    else:
-        print("None")
