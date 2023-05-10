@@ -14,10 +14,8 @@ def number_of_subscribers(subreddit):
             1.0/0x16-api_advanced'}
 
     response = requests.get(url, headers=headers, allow_redirects=False)
-    data = response.json()
-    subscribers = data['data']['subscribers']
 
-    if subreddit is None or type(subreddit) is not str:
-        return 0
-    else:
-        return subscribers
+    data = response.json()
+    subscribers = data.get("data", {}).get("subscribers", 0)
+
+    return subscribers
