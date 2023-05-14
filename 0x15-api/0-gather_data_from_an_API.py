@@ -19,7 +19,7 @@ if __name__ == '__main__':
     user_todos = [todo for todo in todos if todo.get("userId") == userId]
 
     # Count the number of completed tasks
-    completed_todos = [todo for todo in user_todos if todo.get("completed") == True]
+    completed_todos = [todo for todo in user_todos if todo.get("completed")]
 
     # Display the progress
     print("Employee {} is done with tasks({}/{}):".format(
