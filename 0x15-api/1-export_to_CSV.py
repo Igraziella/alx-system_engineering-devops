@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""  Exports data from "https://jsonplaceholder.typicode.com" in the CSV format.
+""" Exports data from https://jsonplaceholder.typicode.com
+    in the CSV format.
 """
 import csv
 import requests
@@ -19,11 +20,11 @@ if __name__ == '__main__':
 
     with open('{}.csv'.format(userId), 'w') as file:
         for todo in todos:
-                    file.write(
-                        '"{}","{}","{}","{}"\n'.format(
-                            userId,
-                            name,
-                            todo.get('completed'),
-                            todo.get('title')
-                            )
-                        )
+            file.write(
+                    '"{}","{}","{}","{}"\n'.format(
+                        userId,
+                        name,
+                        todo.get('completed'),
+                        todo.get('title')
+                    )
+                )

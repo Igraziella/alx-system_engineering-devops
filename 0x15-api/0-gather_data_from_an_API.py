@@ -14,16 +14,16 @@ if __name__ == '__main__':
     userId = int(sys.argv[1])
     user_endPoint = "{}/users/{}".format(API, userId)
     name = requests.get(user_endPoint).json().get("name")
-    todos_endPoint = "{}/todos".format(API)
-    todos = requests.get(todos_endPoint).json()
-    user_todos = [todo for todo in todos if todo.get("userId") == userId]
+    tasks_endPoint = "{}/todos".format(API)
+    tasks = requests.get(tasks_endPoint).json()
+    user_todos = [task for task in tasks if task.get("userId") == userId]
 
     # Count the number of completed tasks
-    completed_todos = [todo for todo in user_todos if todo.get("completed")]
+    completed_todos = [task for task in user_todos if task.get("completed")]
 
     # Display the progress
     print("Employee {} is done with tasks({}/{}):".format(
         name, len(completed_todos), len(user_todos)))
-    for todo in user_todos:
-        if todo["completed"]:
-            print("\t{}".format(todo["title"]))
+    for task in user_todos:
+        if task["completed"]:
+            print("\t{}".format(task["title"]))
